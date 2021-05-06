@@ -10,13 +10,15 @@ const periodocalCheckJob = require("./schedule/job");
 const util = require("./util/util");
 
 const client = new Discord.Client()
+let job;
 
 let botCommand = "fp ";
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-	schedule.scheduleJob(process.env.SCHEDULE, periodocalCheckJob);
-	console.log("Periodical check was scheduled: " + process.env.SCHEDULE);
+	job = schedule.scheduleJob(process.env.SCHEDULE_UTC, periodocalCheckJob);
+	console.log("Periodical check was scheduled: " + process.env.SCHEDULE_UTC);
+	console.log("Next run: " + job.nextInvocation());
 });
 
 client.on("message", msg => {
@@ -48,8 +50,13 @@ function handleCommand(splitParams, msg) {
 		addNameToChannel(getName(splitParams), msg);
 	} else if(command === "check") {
 		console.log("Checking a specific name on demand of " + msg.author.id);
-		checkName(getName(splitParams), msg.channel, util.createMentionFromUserId( msg.author.id));
+		checkName([{
+			name: getName(splitParams),
+			channel: msg.channel,
+			mention: util.createMentionFromUserID(msg.author.id)
+		}]);
 	} else if(command === "list") {
+		console.log("Listing subs on demand of " + msg.author.id);
 		listSubs(msg);
 	} else if(command === "remove") {
 		console.log("Removing a subscription on demand of " + msg.author.id);

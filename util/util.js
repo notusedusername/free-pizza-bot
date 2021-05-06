@@ -11,7 +11,19 @@ function createMentionFromUserID(id) {
 	return "<@" + id + ">"
 }
 
+function getSubDataDef(records, name, restaurant, def) {
+	for(record of records) {
+		console.log(new Date().toISOString() + ": " + "Checking " + record.name + " at " + restaurant+ "...");
+		if(record.name.toLowerCase() === name.toLowerCase()) {
+			returnValue = record;
+			return record;
+		}
+	}
+	return def;
+}
+
 module.exports = {
 	getPrettyName: getPrettyName,
-	createMentionFromUserID: createMentionFromUserID
+	createMentionFromUserID: createMentionFromUserID,
+	getSubDataDef: getSubDataDef
 }

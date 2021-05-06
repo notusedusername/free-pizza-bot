@@ -1,5 +1,5 @@
 const Database = require("@replit/database");
-const utils = require("../util/util");
+const util = require("../util/util");
 
 const db = new Database();
 
