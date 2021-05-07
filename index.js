@@ -16,6 +16,7 @@ let botCommand = "fp ";
 
 client.on("ready", () => {
   util.log(`Logged in as ${client.user.tag}!`);
+	client.user.setActivity("Listening to fp");
 	job = schedule.scheduleJob(process.env.SCHEDULE_UTC, periodocalCheckJob);
 	util.log("Periodical check was scheduled: " + process.env.SCHEDULE_UTC);
 	util.log("Next run: " + job.nextInvocation());
@@ -28,6 +29,10 @@ client.on("message", msg => {
 	} else if (msg.content.toLowerCase() === "ping") {
 		msg.react("🖕");
 		msg.channel.send("Say my name bitch!");
+	} else if(msg.content.toLowerCase() === botCommand.trim()) {
+		msg.react("🤖");
+		util.log("Requested help page by user " + msg.author.id);
+		msg.channel.send("For instructions see  \nhttps://github.com/notusedusername/free-pizza-bot/blob/master/README.md")
 	}
 });
 
