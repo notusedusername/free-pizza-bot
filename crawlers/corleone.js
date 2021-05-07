@@ -10,14 +10,14 @@ module.exports = {
 				res.text()
 			).then( (text) => {
 				return new Promise((resolve, reject) => resolve(this.searchForName(cheerio.load(text), records)))
-			}).catch( (error) => console.error("Error while fetching Corleone", error));
+			}).catch( (error) => util.error("Error while fetching Corleone", error));
 	},
 	searchForName: function ($, records) {
 		let winner = $("div#get_gp_dailyprize_winners > div.winner_row > span.winner_name").first().text();
 		let winnerSub = util.getSubDataDef(records, winner.trim(), "Corleone", null);
 		if(winnerSub != null) {
 			messages.sendWinnerMessage(winnerSub);
-			console.log(new Date().toISOString() + ": " + winner + " won at Corleone!");
+			util.log(winner + " won at Corleone!");
 			return true;
 		} else {
 			return false;

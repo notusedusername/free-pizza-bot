@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const Database = require("@replit/database");
+const util = require("../util/util");
 
 const checkName = require("../commands/check");
 
@@ -8,7 +9,7 @@ const client = new Discord.Client();
 client.login(process.env.TOKEN);
 
 function job(){
-	console.log('Checking winners job is started!');
+	util.log('Checking winners job is started!');
 	db.getAll().then((result) => {
 		let records = [];
 		for(id in result) {
@@ -20,10 +21,10 @@ function job(){
 				mention: data.mention
 			});
 		}
-		checkName(records);
+		checkName(records, true);
 	})
 	.catch((error) => {
-		console.error("Error while getting list of subscribers", error);
+		util.error("Error while getting list of subscribers", error);
 	});
 }
 

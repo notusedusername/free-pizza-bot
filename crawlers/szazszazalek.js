@@ -10,7 +10,7 @@ module.exports = {
 				res.text()
 			).then( (text) => {
 				return new Promise((resolve, reject) => resolve(this.searchForName(cheerio.load(text), records)))
-			}).catch( (error) => console.error("Error while fetching 100% pizza", error));
+			}).catch( (error) => util.error("Error while fetching 100% pizza", error));
 	},
 	searchForName: function ($, records) {
 		let foundWinner = false;
@@ -18,7 +18,7 @@ module.exports = {
 			let winnerSub = util.getSubDataDef(records, $(elem).text().trim(), "100%", null);
 			if(winnerSub !== null) {
 				messages.sendWinnerMessage(winnerSub);
-				console.log(new Date().toISOString() + ": " + winnerSub.name + " won at 100%!");
+				util.log(winnerSub.name + " won at 100%!");
 				foundWinner = true;
 			}
 		});

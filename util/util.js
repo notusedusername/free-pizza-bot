@@ -22,8 +22,26 @@ function getSubDataDef(records, name, restaurant, def) {
 	return def;
 }
 
+function error(message, error){
+	console.error(getFormattedMessage(message), error);
+}
+
+function log(message) {
+	console.log(getFormattedMessage(message));
+}
+
+function getFormattedMessage(message) {
+	return "[" + getDate() + "] - <" + message + ">";
+}
+
+function getDate(){
+	return new Date().toISOString().replace("T", " ").replace("Z", "");
+}
+
 module.exports = {
 	getPrettyName: getPrettyName,
 	createMentionFromUserID: createMentionFromUserID,
-	getSubDataDef: getSubDataDef
+	getSubDataDef: getSubDataDef,
+	log: log,
+	error: error
 }

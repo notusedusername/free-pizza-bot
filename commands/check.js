@@ -1,6 +1,7 @@
 const szazszazalek = require("../crawlers/szazszazalek");
 const corleone = require("../crawlers/corleone");
 
+
 module.exports = function (records, onlySuccessMessage) {
 	Promise.all([szazszazalek.fetch(records), corleone.fetch(records)])
 		.then((values) => {

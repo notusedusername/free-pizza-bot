@@ -1,4 +1,5 @@
 const hash = require('object-hash');
+const util = require("../util/util");
 const Database = require("@replit/database");
 
 const db = new Database();
@@ -8,7 +9,7 @@ function addNameToChannel(name, message) {
 		addNameToDb(name, message);
 	} else {
 		message.reply("You did not said the name to watch. It should look like this: *fp add Ilove Pizza*");
-		console.warn("Add command without name.");
+		util.log("Add command without name.");
 	}
 }
 
@@ -23,10 +24,10 @@ function addNameToDb(name, message) {
 		mention: message.author.toString()
 	};
 	db.set(getDbKey(data), JSON.stringify(data)).then(() => {
-		console.log("New name successfully added!");
+		util.log("New name successfully added!");
 		message.reply("I will @mention you here, if you won a free pizza! Type *fp list* to check the watched names on this channel.");
 	})
-	.catch( (error) => console.error("Error while inserting new sub", error));
+	.catch( (error) => util.error("Error while inserting new sub", error));
 }
 
 

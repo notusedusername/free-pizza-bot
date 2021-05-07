@@ -20,6 +20,6 @@ module.exports = function (message) {
 		message.channel.send(list);
 	})
 	.catch((error) => {
-		console.error("Error while getting list of subscribers", error);
+		util.error("Error while getting list of subscribers", error);
 	});
 }
