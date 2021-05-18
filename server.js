@@ -4,7 +4,8 @@ const util = require("./util/util");
 const server = express()
 
 server.all("/", (req, res) => {
-  res.send("Bot is running!")
+  util.log("Monitoring ping recieved.");
+	res.send("Bot is running!")
 })
 
 function keepAlive() {

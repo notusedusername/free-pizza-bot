@@ -60,7 +60,8 @@ function handleCommand(splitParams, msg) {
 		util.log("Adding new name subscription on demand of " + msg.author.id);
 		addNameToChannel(getName(splitParams), msg);
 	} else if(command === "check") {
-		msg.react("📋");		
+		msg.react("📋");
+		msg.channel.send("Just a moment...");		
 		util.log("Checking a specific name on demand of " + msg.author.id);
 		checkName([{
 			name: getName(splitParams),
@@ -75,10 +76,16 @@ function handleCommand(splitParams, msg) {
 		msg.react("♻️");
 		util.log("Removing a subscription on demand of " + msg.author.id);
 		deleteSub(getName(splitParams), msg.channel);
-	} else if(command === "check-all" && msg.author.id === process.env.ADMIN) {
-		msg.react("🧑‍💻");
-		util.log("Checking all subs on channel on demand of the admin");
-		periodocalCheckJob();
+	} else if(command === "check-all") {
+		if(msg.author.id === process.env.ADMIN) {
+      msg.react("🧑‍💻");
+		  util.log("Checking all subs on channel on demand of the admin");
+	  	periodocalCheckJob();
+   	} else {
+		  msg.react("🖕");
+	  	util.log(msg.author.id +" tried to use admin command.");
+		  msg.channel.send("You are not my boss!");
+  	}
 	}
 }
 

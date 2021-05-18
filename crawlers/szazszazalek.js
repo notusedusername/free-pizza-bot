@@ -13,19 +13,15 @@ module.exports = {
 			}).catch( (error) => util.error("Error while fetching 100% pizza", error));
 	},
 	searchForName: function ($, records) {
-		let foundWinner = false;
+		let winnerFound = false;
 		$("div#roundedbox-right table tr td").each((index, elem) => {
 			let winnerSub = util.getSubDataDef(records, $(elem).text().trim(), "100%", null);
 			if(winnerSub !== null) {
 				messages.sendWinnerMessage(winnerSub);
 				util.log(winnerSub.name + " won at 100%!");
-				foundWinner = true;
+				winnerFound = true;
 			}
 		});
-		if(foundWinner) {
-			return true;
-		} else {
-			return false;
-		}
+		return winnerFound;
 	}
 }

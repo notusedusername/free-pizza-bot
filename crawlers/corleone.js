@@ -14,8 +14,9 @@ module.exports = {
 	},
 	searchForName: function ($, records) {
 		let winner = $("div#get_gp_dailyprize_winners > div.winner_row > span.winner_name").first().text();
+		let date = $("div#get_gp_dailyprize_winners > div.winner_row > span.winner_date").first().text();
 		let winnerSub = util.getSubDataDef(records, winner.trim(), "Corleone", null);
-		if(winnerSub != null) {
+		if(winnerSub != null && util.isAtToday(date, 'YYYY-MM-DD hh:mm:ss')) {
 			messages.sendWinnerMessage(winnerSub);
 			util.log(winner + " won at Corleone!");
 			return true;

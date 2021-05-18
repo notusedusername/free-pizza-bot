@@ -13,9 +13,16 @@ The listed names will be periodically checked on the pizza sites.
 
 #### Scheduled checks
 
-The checks run automatically every day at 14:15 and 18:15 (UTC+02:00), and checks the 
+The checks run automatically every day at 
+* 11:15
+* 14:15
+* 19:15 
+ 
+(UTC+02:00), and checks the 
+
 * [Corleone](https://corleoneristorante.hu/)
 * [100% Pizza](https://www.100szazalekpizza.hu/) 
+* [Don Pedro](https://donpedropizza.hu/)
 sites.
 
 ### Listing subs

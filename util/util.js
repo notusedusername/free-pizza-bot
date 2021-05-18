@@ -1,3 +1,4 @@
+const moment = require("moment");
 
 function getPrettyName(name) {
 	let nameArray = name.split(" ");
@@ -13,7 +14,7 @@ function createMentionFromUserID(id) {
 
 function getSubDataDef(records, name, restaurant, def) {
 	for(record of records) {
-		console.log(new Date().toISOString() + ": " + "Checking " + record.name + " at " + restaurant+ "...");
+		log(new Date().toISOString() + ": " + "Checking " + record.name + " at " + restaurant+ "...");
 		if(record.name.toLowerCase() === name.toLowerCase()) {
 			returnValue = record;
 			return record;
@@ -38,10 +39,17 @@ function getDate(){
 	return new Date().toISOString().replace("T", " ").replace("Z", "");
 }
 
+function isAtToday(dateString, format) {
+	const dateToCheck = moment(dateString, format);
+	const today = moment();
+	return dateToCheck.isSame(today, "day");
+}
+
 module.exports = {
 	getPrettyName: getPrettyName,
 	createMentionFromUserID: createMentionFromUserID,
 	getSubDataDef: getSubDataDef,
 	log: log,
-	error: error
+	error: error,
+	isAtToday: isAtToday
 }
