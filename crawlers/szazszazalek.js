@@ -3,6 +3,8 @@ const fetch = require("node-fetch")
 const messages = require("../messages/szazszazalek")
 const util = require("../util/util");
 
+/* The restaurant closed in the meantime */
+
 module.exports = {
 	fetch: function (records) {
 		return fetch("https://www.100szazalekpizza.hu/menu/nyeremenyjatek")
