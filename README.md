@@ -9,7 +9,7 @@ Discord bot to check free pizza offers of local pizzerias
 
 Add a name to the checklist of the channel. If a winner found, then the user, who added it, will be @mentioned on the channel where this
 command was used. A name can be watched on a channel by more users, and also on more channel
-The listed names will be periodically checked on the pizza sites.
+The listed names will be periodically checked on the pizza(/gyros) sites.
 
 #### Scheduled checks
 
@@ -21,8 +21,9 @@ The checks run automatically every day at
 (UTC+02:00), and checks the 
 
 * [Corleone](https://corleoneristorante.hu/)
-* [100% Pizza](https://www.100szazalekpizza.hu/) 
+* ~~[100% Pizza](https://www.100szazalekpizza.hu/) ~~
 * [Don Pedro](https://donpedropizza.hu/)
+* [Akropolisz Gyros & Pizza](https://akropolisz-gyros.hu/)
 sites.
 
 ### Listing subs
